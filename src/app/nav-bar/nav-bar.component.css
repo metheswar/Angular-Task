@@ -1,0 +1,13 @@
+.navbar-brand {
+    margin-right: auto; 
+  }
+  
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-end; 
+  }
+  
+  .nav-link {
+    margin-left: 15px; 
+  }
+  

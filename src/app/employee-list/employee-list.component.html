@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Employee List</h2>
+  <div class="mb-3 mt-3">
+    <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="searchQuery" (input)="filterEmployees()">
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Score</th>
+        <th>Email</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filteredEmployees; let i= index">
+        <td><input type="checkbox" (change)="onCheckboxChange(i)"></td> 
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.score }}</td>
+        <td>{{ employee.email }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="onEdit(i)">Edit</button>
+        </td> 
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-danger" (click)="onDelete()" [disabled]="selectedIndexes.length === 0">Delete</button>
+  <button class="btn btn-primary ms-3" (click)="calculate()" [disabled]="selectedIndexes.length === 0">Calculate</button>
+  
+  <div class="container mt-3" *ngIf="max > 0 && min > 0 && avg > 0">
+    <h4>Statistics</h4>
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold">Max Score:</p>
+        <p>{{ max }}</p>
+      </div>
+      <div class="col">
+        <p class="fw-bold">Min Score:</p>
+        <p>{{ min }}</p>
+      </div>
+      <div class="col">
+        <p class="fw-bold">Avg Score:</p>
+        <p>{{ avg }}</p>
+      </div>
+    </div>
+  </div>
+</div>
