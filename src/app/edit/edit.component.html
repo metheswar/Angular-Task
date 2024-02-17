@@ -1,29 +1,27 @@
-
 <div class="container">
-    <div class="row justify-content-center cardContainer">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <form #editForm="ngForm" (submit)="onclick(editForm.value.name, editForm.value.score, editForm.value.email)">
-              <div class="mb-3">
-                <label for="name" class="form-label">Employee Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Employee name" name="name" [(ngModel)]="name" required>
-              </div>
-              <div class="mb-3">
-                <label for="score" class="form-label">Employee Score</label>
-                <input type="number" class="form-control" id="score" placeholder="Employee score" name="score" [(ngModel)]="score" (keyup)="validateScore()" required min="0" max="100">
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Employee email" name="email" [(ngModel)]="email" required>
-              </div>
-              <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </form>
-          </div>
+  <div class="row justify-content-center cardContainer">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Employee Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Employee name" formControlName="name">
+            </div>
+            <div class="mb-3">
+              <label for="score" class="form-label">Employee Score</label>
+              <input type="number" class="form-control" id="score" placeholder="Employee score" formControlName="score">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Employee email" formControlName="email">
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
