@@ -1,4 +1,4 @@
-// employee-form.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -56,5 +56,15 @@ export class EmployeeFormComponent implements OnInit {
   shouldShowEmailPatternError(): boolean {
     const control = this.employeeForm.get('email');
     return control.hasError('pattern') && (control.dirty || control.touched);
+  }
+
+  limitScore(event: any): void {
+    const score = event.target.value;
+    
+    if (score > 100) {
+      this.employeeForm.patchValue({
+        score: 100
+      });
+    }
   }
 }

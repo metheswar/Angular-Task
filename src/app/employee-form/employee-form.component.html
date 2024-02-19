@@ -11,14 +11,15 @@
             </div>
             <div class="mb-3">
               <label for="score" class="form-label">Employee Score</label>
-              <input type="number" class="form-control" id="score" placeholder="Employee score" formControlName="score">
-              <div class="text-danger" [style.visibility]="shouldShowScoreError() && employeeForm.get('score').touched ? 'visible' : 'hidden'">Score cannot be greater than 100.</div>
+              <input type="number" class="form-control" id="score" placeholder="Employee score" formControlName="score" min="0" max="100" (input)="limitScore($event)">
+              <div class="text-danger" [style.visibility]="shouldShowScoreError() && employeeForm.get('score').touched ?'visible' : 'hidden'">Score cannot be greater than 100.</div>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control" id="email" placeholder="Employee email" formControlName="email">
-              <div class="text-danger" [style.visibility]="shouldShowEmailRequiredError() && employeeForm.get('email').touched ? 'visible' : 'hidden'">Email is required.</div>
-              <div class="text-danger" [style.visibility]="shouldShowEmailPatternError() && employeeForm.get('email').touched ? 'visible' : 'hidden'">Invalid email format.</div>
+              <div class="text-danger" [style.visibility]="((shouldShowEmailRequiredError() || shouldShowEmailPatternError()) && employeeForm.get('email').touched) ? 'visible' : 'hidden'">
+                {{ shouldShowEmailRequiredError() ? 'Email is required.' : 'Invalid email format.' }}
+              </div>              
             </div>
             <div class="d-flex justify-content-between">
               <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Submit</button>

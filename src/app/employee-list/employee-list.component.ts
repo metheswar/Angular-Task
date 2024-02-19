@@ -16,8 +16,10 @@ export class EmployeeListComponent implements OnInit {
   max: number;
   min: number;
   avg: number;
+  employeeService
 
-  constructor(private employeeService: EmployeeService, private router: Router) { 
+  constructor( private router: Router) { 
+   this.employeeService = new EmployeeService()
   }
 
   ngOnInit(): void {
